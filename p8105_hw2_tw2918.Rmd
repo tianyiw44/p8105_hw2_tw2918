@@ -45,7 +45,16 @@ snp_df =
   separate(date, into = c("month", "day", "year"))|>
   select(-day)|>
   mutate(month = month.name[as.numeric(month)])|>
-  mutate(month = factor(month, levels = month.name)|>
-  arrange(year, month)
+  arrange(year, month)|>
+  relocate(year, month,close)
+```
+
+## 3. tidy the unemployment data
+
+```{r, eval=FALSE}
+unemp_df = 
+  read_csv("./fivethirtyeight_datasets/unemployment.csv")|>
+  janitor::clean_names()
+
 ```
 
