@@ -32,3 +32,12 @@ pols_month_df =
   )|>
   select(-value, -day)
 ```
+
+## 2. clean the data in snp.csv using a similar process to the above
+
+```{r}
+snp_df = 
+  read_csv("./fivethirtyeight_datasets/snp.csv")|>
+  janitor::clean_names()
+```
+
