@@ -14,11 +14,19 @@ library(tidyverse)
 
 ### (2)  replace month number with month name
 
+### (3) create a president variable taking values gop and dem, and remove prez_dem and prez_gop
 
 ```{r}
 pols_month_df = 
   read_csv("./fivethirtyeight_datasets/pols-month.csv")|>
   janitor::clean_names()|>
   separate(mon, into = c("year", "month", "day"))|>
-  mutate(month = month.name[as.numeric(month)])
+  mutate(month = month.name[as.numeric(month)])|>
+  relocate(year, month, day, prez_gop, prez_dem) |>
+  pivot_longer(
+    prez_gop: prez_dem,
+    names_to= "president",
+    names_prefix = "prez_",
+  )|>
+  select(-value)
 ```
