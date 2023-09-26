@@ -14,9 +14,11 @@ library(tidyverse)
 
 ### (2)  replace month number with month name
 
-### (3) create a president variable taking values gop and dem, and remove prez_dem and prez_gop
+### (3) create a `president` variable taking values `gop` and `dem`, and remove `prez_dem` and `prez_gop`
 
-```{r}
+### (4) remove `day` variable 
+
+```{r, eval=FALSE}
 pols_month_df = 
   read_csv("./fivethirtyeight_datasets/pols-month.csv")|>
   janitor::clean_names()|>
@@ -28,5 +30,5 @@ pols_month_df =
     names_to= "president",
     names_prefix = "prez_",
   )|>
-  select(-value)
+  select(-value, -day)
 ```
