@@ -15,6 +15,6 @@ library(tidyverse)
 ```{r}
 pols_month_df = 
   read_csv("./fivethirtyeight_datasets/pols-month.csv")|>
-  janitor::clean_names()
-  
+  janitor::clean_names()|>
+  separate(mon, into = c("year", "month", "day"))
 ```
